@@ -2,46 +2,86 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+[ZRender](https://github.com/ecomfe/zrender) is a two-dimensional drawing engine that can renders on Canvas, SVG, and VML. ZRender is the renderer of [ECharts](https://echarts.apache.org).
 
-Let's discover **Docusaurus in less than 5 minutes**.
 
-## Getting Started
+## Download / Installation
 
-Get started by **creating a new site**.
+Using NPM: `npm install zrender`.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+On GitHub: [https://github.com/ecomfe/zrender](https://github.com/ecomfe/zrender).
 
-### What you'll need
+Find `zrender.js` and `zrender.min.js` in the `dist` directory, the former is the development version and the latter is the release version.
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
 
-## Generate a new site
+## Usage
 
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```html
+<script src="./dist/zrender.js"></script>
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
 
-## Start your site
+## Initialization
 
-Run the development server:
+Create an instance and attach to a DOM element:
 
-```bash
-cd my-website
-npm run start
+```js
+var zr = zrender.init(document.getElementById('main'));
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+See [API docs](/api.html#zrender-instance-api) for the zrender instance.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+
+## Adding elements
+
+ZRender provides nearly 20 graphic types, which can be found under the documentation [zrender.Displayable](/api.html#zrenderdisplayable).
+
+You can create other graphic types using [zrender.Path.extend](/api.html#zrenderpathextendprops) .
+
+Add a circle：
+
+```js
+var circle = new zrender.Circle({
+    shape: {
+        cx: 150,
+        cy: 50,
+        r: 40
+    },
+    style: {
+        fill: 'none',
+        stroke: '#F00'
+    }
+});
+zr.add(circle);
+```
+
+Creates a circle centered at `[150, 50]` with a radius of `40` pixels and adds it to the canvas.
+
+
+## Properties
+
+You can read attributes with a simple dot notation `elem.shape`.
+
+But if you need to modify a property, you must use [`elem.attr(key , value)`](/api.html#zrenderelementattrkey-value), otherwise the redraw of the graphics will not be triggered.
+
+
+```js
+var circle = new zrender.Circle({
+    shape: {
+        cx: 150,
+        cy: 50,
+        r: 40
+    }
+});
+zr.add(circle);
+
+console.log(circle.shape.r); // 40
+circle.attr('shape', {
+    r: 50 // Only updates .cx,cy are not modified.
+});
+```
+
+
+Please refer to [documentation](/api.html) for more information.
