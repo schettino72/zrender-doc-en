@@ -3,6 +3,7 @@ sidebar_position: 6
 ---
 
 import * as zrender from '@site/static/zrender.js';
+import CodeBlock from '@theme/CodeBlock';
 
 export class ZGraph extends React.Component {
     constructor(props) {
@@ -12,74 +13,40 @@ export class ZGraph extends React.Component {
     }
     componentDidMount() {
         var zr = zrender.init(this.$container.current);
-        this.props.renderGraph(zrender, zr);
+        this.props.renderGraph(zr);
     }
     render() {
         return (
           <div>
-            <pre>
-            {this.props.renderGraph.toString()}
-            </pre>
+            <CodeBlock language="js">
+              {this.props.src}
+            </CodeBlock>
             <div className="content">
-                <div ref={this.$container} className="example-container">
-                </div>
+              <div ref={this.$container} className="example-container">
+              </div>
             </div>
           </div>
         );
     }
 }
 
-export function simpleCircle(zrender, zr) {
-    // https://v1.mdxjs.com/guides/live-code
-    // https://docusaurus.io/docs/markdown-features/react#importing-code-snippets
-    var circle = new zrender.Circle({
-        shape: {
-            cx: zr.getWidth() / 2,
-            cy: zr.getHeight() / 2,
-            r: 30
-        },
-        style: {
-            fill: 'transparent',
-            stroke: '#FF6EBE'
-        },
-    });
-    zr.add(circle);
+export function trimLines(text, nStart, nEnd) {
+    var lines = text.split('\n');
+    // remove lines, starting at the beginning of file
+    lines.splice(0, nStart);
+    if (nEnd) {
+      lines.splice(lines.length - nEnd, nEnd);
+    }
+    return lines.join('\n');
 }
 
-<ZGraph renderGraph={simpleCircle}></ZGraph>
+<!-- TODO: replace raw-loader on webpack 5 -->
+<!-- https://webpack.js.org/guides/asset-modules/#replacing-inline-loader-syntax -->
+import simpleCircle from '@site/snippets/circle.js';
+import srcCircle from '!!raw-loader!@site/snippets/circle.js';
 
 
-```javascript
-    window.onload = function () {
-      var container = document.getElementsByClassName('example-container')[0];
-      var zr = zrender.init(container);
-
-      var w = zr.getWidth();
-      var h = zr.getHeight();
-
-      var r = 30;
-      var circle = new zrender.Circle({
-        shape: {
-          cx: r,
-          cy: h / 2,
-          r: r
-        },
-        style: {
-          fill: 'transparent',
-          stroke: '#FF6EBE'
-        },
-        silent: true
-      });
-
-      circle.animate('shape', true)
-        .when(5000, {
-          cx: w - r
-        })
-        .when(10000, {
-          cx: r
-        })
-        .start();
-
-      zr.add(circle);
-    };
-```
+<ZGraph 
+    src={trimLines(srcCircle, 3, 3)}
+    renderGraph={simpleCircle}>
+</ZGraph>
