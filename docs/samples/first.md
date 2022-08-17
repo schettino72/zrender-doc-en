@@ -2,56 +2,51 @@
 sidebar_position: 6
 ---
 
-export const Highlight = ({children, color}) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: '2px',
-      color: '#fff',
-      padding: '0.2rem',
-    }}>
-    {children}
-  </span>
-);
-
 import * as zrender from '@site/static/zrender.js';
-export class MyComp extends React.Component {
+
+export class ZGraph extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            value: 'XXX',
-        }
+        this.state = {};
         this.$container = React.createRef();
     }
     componentDidMount() {
         var zr = zrender.init(this.$container.current);
-        var circle = new zrender.Circle({
-        shape: {
-          cx: zr.getWidth() / 2,
-          cy: zr.getHeight() / 2,
-          r: 30
-        },
-        style: {
-          fill: 'transparent',
-          stroke: '#FF6EBE'
-        },
-        silent: true
-      });
-      zr.add(circle);
+        this.props.renderGraph(zrender, zr);
     }
     render() {
         return (
+          <div>
+            <pre>
+            {this.props.renderGraph.toString()}
+            </pre>
             <div className="content">
                 <div ref={this.$container} className="example-container">
                 </div>
             </div>
+          </div>
         );
     }
 }
 
-<Highlight color="#25c2a0">Docusaurus green</Highlight> and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
+export function simpleCircle(zrender, zr) {
+    // https://v1.mdxjs.com/guides/live-code
+    // https://docusaurus.io/docs/markdown-features/react#importing-code-snippets
+    var circle = new zrender.Circle({
+        shape: {
+            cx: zr.getWidth() / 2,
+            cy: zr.getHeight() / 2,
+            r: 30
+        },
+        style: {
+            fill: 'transparent',
+            stroke: '#FF6EBE'
+        },
+    });
+    zr.add(circle);
+}
 
-<MyComp>comp content</MyComp>
+<ZGraph renderGraph={simpleCircle}></ZGraph>
 
 
 ```javascript
