@@ -30,15 +30,15 @@ Create an instance and attach to a DOM element:
 var zr = zrender.init(document.getElementById('main'));
 ```
 
-See [API docs](/api.html#zrender-instance-api) for the zrender instance.
+See *API docs* for the zrender instance.
 
 
 
 ## Adding elements
 
-ZRender provides nearly 20 graphic types, which can be found under the documentation [zrender.Displayable](/api.html#zrenderdisplayable).
+<!-- ZRender provides nearly 20 graphic types, which can be found under the documentation [zrender.Displayable](/api.html#zrenderdisplayable). -->
 
-You can create other graphic types using [zrender.Path.extend](/api.html#zrenderpathextendprops) .
+<!-- You can create other graphic types using [zrender.Path.extend](/api.html#zrenderpathextendprops) . -->
 
 Add a circle：
 
@@ -64,7 +64,7 @@ Creates a circle centered at `[150, 50]` with a radius of `40` pixels and adds i
 
 You can read attributes with a simple dot notation `elem.shape`.
 
-But if you need to modify a property, you must use [`elem.attr(key , value)`](/api.html#zrenderelementattrkey-value), otherwise the redraw of the graphics will not be triggered.
+But if you need to modify a property, you must use `elem.attr(key , value)`, otherwise the redraw of the graphics will not be triggered.
 
 
 ```js
@@ -82,6 +82,3 @@ circle.attr('shape', {
     r: 50 // Only updates .cx,cy are not modified.
 });
 ```
-
-
-Please refer to [documentation](/api.html) for more information.
