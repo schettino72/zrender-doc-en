@@ -1,6 +1,8 @@
 ---
-sidebar_position: 6
+sidebar_position: 1
 ---
+
+Draw a static circle in the center of the canvas.
 
 import ZGraph from '@site/src/components/ZGraph.js';
 
