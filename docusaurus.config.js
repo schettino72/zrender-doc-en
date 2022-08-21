@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'ZRender - Unofficial docs',
   tagline: 'A lightweight 2D graphic library - typescript',
-  url: 'https://github.com/schettino72/zrender-doc-en',
-  baseUrl: '/',
+  url: 'https:///schettino72.github.io',
+  baseUrl: '/zrender-doc-en/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -18,6 +18,8 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'schettino72', // Usually your GitHub org/user name.
   projectName: 'zrender-doc-en', // Usually your repo name.
+  //deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
