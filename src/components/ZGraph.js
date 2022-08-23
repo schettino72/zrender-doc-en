@@ -39,11 +39,8 @@ export default class ZGraph extends React.Component {
     render() {
         return (
             <div>
-                <CodeBlock language="js">
-                    {this.src}
-                </CodeBlock>
-                <div ref={this.$container} className="zcanvas-container">
-                </div>
+                <div ref={this.$container} className="zcanvas-container"></div>
+                <CodeBlock language="js">{this.src}</CodeBlock>
             </div>
         );
     }
