@@ -63,14 +63,14 @@ const config = {
         title: 'ZRender',
         logo: {
           alt: 'ZRender Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Getting Started',
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -87,8 +87,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Getting Started',
                 to: '/docs/intro',
+              },
+              {
+                label: 'Samples',
+                to: '/docs/samples',
               },
             ],
           },
@@ -117,8 +121,16 @@ const config = {
               //   to: '/blog',
               // },
               {
-                label: 'GitHub',
+                label: 'GitHub - docs EN (this site)',
                 href: 'https://github.com/schettino72/zrender-doc-en',
+              },
+              {
+                label: 'Official docs (chinese)',
+                href: 'https://ecomfe.github.io/zrender-doc/public/',
+              },
+              {
+                label: 'ZRender code (github)',
+                href: 'https://github.com/ecomfe/zrender',
               },
             ],
           },

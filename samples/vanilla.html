@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<head>
+  <style>
+    .zcanvas-container {
+      height: 200px;
+      max-width: 300px;
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div>Hello</div>
+  <div id="sample-container" class="zcanvas-container"></div>
+  
+  <script src="./static/zrender.js"></script>
+  <script>
+    window.onload = function () {
+      var container = document.getElementById('sample-container');
+      var zr = zrender.init(container);
+      
+      var w = zr.getWidth();
+      var h = zr.getHeight();
+      
+      var r = 30;
+      var circle = new zrender.Circle({
+        shape: {
+          cx: w / 2,
+          cy: h / 2,
+          r: r
+        },
+        style: {
+          fill: 'transparent',
+          stroke: '#FF6EBE'
+        },
+        silent: true
+      });
+      
+      zr.add(circle);
+    };
+  </script>
+</body>
+
+</html>
